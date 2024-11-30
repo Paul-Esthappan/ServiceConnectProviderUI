@@ -8,6 +8,8 @@ export const fetchUserId = async () => {
       
     });
 
+
+    
     const userId = response.id_number;
     console.log("Fetched User ID:", userId);
     return userId;
@@ -23,6 +25,10 @@ export const fetchUser = async () => {
     const response = await axiosInstance.get("/profile/", {
       
     });
+     const responses = await axiosInstance.get("/franchisee-by-service-provider/", {
+      
+    });
+    console.log(responses);
 
     return response.data;
   } catch (error) {

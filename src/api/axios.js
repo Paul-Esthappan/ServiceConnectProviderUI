@@ -108,7 +108,7 @@ function attachResponseInterceptor() {
       console.log(error);
       
       //  logError(error, store); 
-      // return Promise.reject(error);
+      return Promise.reject(error);
     }
   );
 }
