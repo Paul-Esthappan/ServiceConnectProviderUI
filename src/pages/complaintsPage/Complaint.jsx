@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../../components/complaints/ComplaintCard';
 import { fetchComplaints } from '../../services/providerAxios';
-
+import { complainActiveGet } from '../../services/complaint';
 const ComplaintList = () => {
   const [activeTab, setActiveTab] = useState('active'); // Track active tab
   const [complaints, setComplaints] = useState({ active: [], completed: [] }); // Combined state
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState(null); // Error state
-
+  const [user,setUser] = useState('')
   // Helper to map API response to the desired format
   const transformComplaints = (data) =>
     data.map((complaint) => ({
       id: complaint.id,
       title: complaint.subject,
-      name: `User ${complaint.sender}`, // Replace with actual user name if available
+      name: user, // Replace with actual user name if available
       bookingId: complaint.service_request,
       disputeStatus:
         complaint.status === 'in_progress'
@@ -31,6 +31,7 @@ const ComplaintList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+     
       if (complaints[activeTab].length > 0) return; // Avoid fetching if data already exists
 
       setLoading(true);
@@ -39,6 +40,9 @@ const ComplaintList = () => {
       try {
         const data = await fetchComplaints(activeTab); // Pass activeTab to determine the URL
         const transformedData = transformComplaints(data);
+        const complainUser = await  complainActiveGet()
+        setUser(complainUser.data.user.full_name)
+       console.log(complainUser.data.user.full_name) 
         setComplaints((prev) => ({
           ...prev,
           [activeTab]: transformedData,
