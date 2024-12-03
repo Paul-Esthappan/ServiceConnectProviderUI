@@ -27,6 +27,8 @@ const ReviewSection = () => {
     fetchData(); 
   }, []); 
 
+  
+
   return (
     <div className="bg-light-gray p-6 rounded-xl w-full">
       <div className="text-center mt-4">
@@ -61,7 +63,7 @@ const ReviewSection = () => {
             rating={review.rating}
             review={review.comment}
             likes={review.likes}
-            timeAgo={review.created_at}
+            createdAt={review.created_at}
           />
         ))}
       </div>
