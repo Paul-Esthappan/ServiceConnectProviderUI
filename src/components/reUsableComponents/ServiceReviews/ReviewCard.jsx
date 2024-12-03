@@ -2,6 +2,9 @@ import React from 'react';
 import { FaHeart } from 'react-icons/fa';
 
 const ReviewCard = ({ name, rating, review, likes, timeAgo }) => {
+
+
+  
   return (
     <div>
     <div className="bg-primary shadow-2xl p-4 rounded-xl flex justify-between items-center mb-4 ">

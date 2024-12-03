@@ -36,42 +36,20 @@ const ReviewSection = () => {
           filledColor="text-yellow-500"
           emptyColor="text-yellow-500"
         />
-        <p className="text-sm text-gray-500">{reviewsData.total_reviews}</p>
+        <p className="text-sm text-gray-500">Based on {reviewsData.total_reviews} Review</p>
       </div>
 
       <div className="flex justify-evenly mt-4 space-x-4">
+        
         <CustomButton
           textSize="text-sm"
-          label="Excellent"
+          label={reviewsData.rating_scale}
           bgColor="bg-primary"
           textColor="text-secondary"
           hoverBgColor="bg-secondary"
           hoverTextColor="text-primary"
         />
-        <CustomButton
-          textSize="text-sm"
-          label="Good"
-          bgColor="bg-primary"
-          textColor="text-secondary"
-          hoverBgColor="bg-secondary"
-          hoverTextColor="text-primary"
-        />
-        <CustomButton
-          textSize="text-sm"
-          label="Average"
-          bgColor="bg-primary"
-          textColor="text-secondary"
-          hoverBgColor="bg-secondary"
-          hoverTextColor="text-primary"
-        />
-        <CustomButton
-          textSize="text-sm"
-          label="Below Average"
-          bgColor="bg-primary"
-          textColor="text-secondary"
-          hoverBgColor="bg-secondary"
-          hoverTextColor="text-primary"
-        />
+        
       </div>
 
       <div className="mt-4 grid xs:grid-cols-1 md:grid-cols-2 gap-8 px-4 mx-auto">
@@ -81,9 +59,9 @@ const ReviewSection = () => {
             key={index}
             name={review.name}
             rating={review.rating}
-            review={review.review}
+            review={review.comment}
             likes={review.likes}
-            timeAgo={review.timeAgo}
+            timeAgo={review.created_at}
           />
         ))}
       </div>
