@@ -21,7 +21,7 @@ const ComplaintInput = ({ isOpen, onClose, getApiCall ,values}) => {
 
   const handleSave =(e)=>{
 
-    e.preventDefault();
+    if (e) e.preventDefault();
     if (selectedFile && title && description) {
       const formData = new FormData();
       formData.append('image', selectedFile);
@@ -32,6 +32,7 @@ const ComplaintInput = ({ isOpen, onClose, getApiCall ,values}) => {
       console.log(formData)
       complaintPost(formData)
   }
+  
  
 }
 
@@ -79,7 +80,9 @@ const ComplaintInput = ({ isOpen, onClose, getApiCall ,values}) => {
           </div>
         )}
 
-<div className="w-full" onClick={onClose}>
+
+      </form>
+      <div className="w-full" onClick={onClose}>
         <ButtonComponent
          
           label="Conform Complaint"
@@ -116,8 +119,6 @@ const ComplaintInput = ({ isOpen, onClose, getApiCall ,values}) => {
           }
         />
       </div>
-      </form>
-
       
     </div>
   );
