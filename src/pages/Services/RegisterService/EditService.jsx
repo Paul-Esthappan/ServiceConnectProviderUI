@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PaymentModal from '../../../components/serviceProvider/editServiceComponents/editServiceModal';
 import EditServiceForm from '../../../components/serviceProvider/editServiceComponents/EditServiceForm';
-import NavbarHead from '../../../components/serviceProvider/layout/NavbarHead';
 import { fetchservicedetails } from '../../../editservice/editserviceapi';
 const EditService = () => {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [leadBalance, setLeadBalance] = useState(0);
   const [formValues, setFormValues] = useState(null);
-  const [data,setvalues] = useState({status: 'Active',
+  const [data,setvalues] = useState({
+    status: 'Active',
     serviceTitle: 'Web Development Service',
     description: 'We offer professional web development services',
     gstCode: 'GST123456',

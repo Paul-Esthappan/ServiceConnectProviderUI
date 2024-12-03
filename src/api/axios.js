@@ -18,7 +18,7 @@ import { refreshAccessToken } from "../services/auth/auth";
 
 export const axiosInstance = axios.create({
   withCredentials: true,
-  baseURL: 'https://learnbudsgvr.pythonanywhere.com/service-provider/',
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {
     "Content-Type": "application/json",
   },

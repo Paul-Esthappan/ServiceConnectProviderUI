@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 const ServiceCard = ({ service }) => {
   const navigate = useNavigate();
 
+  console.log(service);
+
   const handleEditClick = () => {
     navigate(`/edit-service/${service.id}`);
   };
@@ -18,23 +20,23 @@ const ServiceCard = ({ service }) => {
     <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-lg mx-auto relative">
       {/* Status Badge */}
       <div className="w-20 h-20 flex-shrink-0">
-          {service.image ? (
-            <img
-              src={service.image}
-              alt={`${service.description || 'Service'} image`}
-              className="w-full h-full rounded-full object-cover border border-gray-300"
-            />
-          ) : (
-            <div className="w-full h-full rounded-full flex items-center justify-center bg-gray-100 border border-gray-300">
-              <MdImageNotSupported size={40} className="text-gray-400" />
-            </div>
-          )}
-        </div>
+        {service.image ? (
+          <img
+            src={import.meta.env.VITE_BASE_URL + service.image}
+            alt={`${service.description || "Service"} image`}
+            className="w-full h-full rounded-full object-cover border border-gray-300"
+          />
+        ) : (
+          <div className="w-full h-full rounded-full flex items-center justify-center bg-gray-100 border border-gray-300">
+            <MdImageNotSupported size={40} className="text-gray-400" />
+          </div>
+        )}
+      </div>
       <div
         className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-semibold ${
-          service.status === 'Active'
-            ? 'bg-green-100 text-green-700'
-            : 'bg-red-100 text-red-700'
+          service.status === "Active"
+            ? "bg-green-100 text-green-700"
+            : "bg-red-100 text-red-700"
         }`}
       >
         {service.status}
@@ -42,12 +44,13 @@ const ServiceCard = ({ service }) => {
 
       <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-6">
         {/* Service Image */}
-        
 
         {/* Service Details */}
         <div className="flex-1">
           <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-gray-800">{service.description}</h3>
+            <h3 className="text-lg font-semibold text-gray-800">
+              {service.description}
+            </h3>
             <button
               onClick={handleEditClick}
               className="text-blue-500 hover:text-blue-700 focus:outline-none"
@@ -60,13 +63,22 @@ const ServiceCard = ({ service }) => {
           {/* Additional Details */}
           <div className="mt-2 space-y-1">
             <p className="text-sm text-gray-500">
-              GST Code: <span className="font-medium text-gray-700">{service.gstcode}</span>
+              GST Code:{" "}
+              <span className="font-medium text-gray-700">
+                {service.gstcode}
+              </span>
             </p>
             <p className="text-sm text-gray-500">
-              Category: <span className="font-medium text-gray-700">{service.category}</span>
+              Category:{" "}
+              <span className="font-medium text-gray-700">
+                {service.category}
+              </span>
             </p>
             <p className="text-sm text-gray-500">
-              Subcategory: <span className="font-medium text-gray-700">{service.subcategory}</span>
+              Subcategory:{" "}
+              <span className="font-medium text-gray-700">
+                {service.subcategory}
+              </span>
             </p>
             <p className="text-sm text-gray-500">
               Collar Amount:{" "}
@@ -77,11 +89,11 @@ const ServiceCard = ({ service }) => {
             {service.available_lead_balance !== null && (
               <p
                 className={`text-sm ${
-                  isLeadBalanceZero ? 'text-red-500' : 'text-green-500'
+                  isLeadBalanceZero ? "text-red-500" : "text-green-500"
                 }`}
               >
                 {isLeadBalanceZero
-                  ? 'Insufficient lead balance'
+                  ? "Insufficient lead balance"
                   : `Lead Balance: ${service.available_lead_balance}`}
               </p>
             )}
@@ -90,7 +102,6 @@ const ServiceCard = ({ service }) => {
       </div>
 
       {/* Show More Details Button */}
-     
     </div>
   );
 };

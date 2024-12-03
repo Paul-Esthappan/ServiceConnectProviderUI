@@ -7,8 +7,6 @@ export const fetchUserId = async () => {
     const response = await axiosInstance.get("/profile/", {
       
     });
-
-
     
     const userId = response.id_number;
     console.log("Fetched User ID:", userId);
@@ -25,10 +23,10 @@ export const fetchUser = async () => {
     const response = await axiosInstance.get("/profile/", {
       
     });
-     const responses = await axiosInstance.get("/franchisee-by-service-provider/", {
+    //  const responses = await axiosInstance.post("/franchisee-by-service-provider/", {
       
-    });
-    console.log(responses);
+    // });
+    // console.log(responses);
 
     return response.data;
   } catch (error) {

@@ -3,7 +3,9 @@ import { axiosInstance } from "../api/axios";
 
 export const serviceRegister = async (values) => {
   try {
-    const response = await axiosInstance.post('/service-registers/', values);
+    const response = await axiosInstance.post("/service-registers/", values, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
     
     return response.data;
   } catch (error) {

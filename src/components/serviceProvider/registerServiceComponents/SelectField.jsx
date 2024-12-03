@@ -1,4 +1,3 @@
-// SelectField.js
 import React from 'react';
 import { Field, ErrorMessage } from 'formik';
 
@@ -14,15 +13,15 @@ const SelectField = ({ name, options, onChange, disabled, className }) => (
             if (onChange) {
               onChange(e); // Your custom handler
             }
-          }}
+          }} 
           disabled={disabled}
         >
           <option value="" disabled>
-            Select {name === 'serviceCategory' ? 'Service Category' : 'Service Sub-category'}
+            Select {name === 'category' ? 'Service Category' : 'Service Sub-category'}
           </option>
-          {options.map((option) => (
-            <option key={option.value || option} value={option.value || option}>
-              {option.label || option}
+          {options?.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
             </option>
           ))}
         </select>
