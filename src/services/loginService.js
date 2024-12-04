@@ -6,6 +6,7 @@ export const signInProvider = async (email, password) => {
       email_or_phone: email,
       password: password,
     });
+    console.log(response)
     if (response.status === 200) {
       const { access, refresh } = response.data;
       return { access, refresh };
