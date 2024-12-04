@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../../components/complaints/ComplaintCard';
 import { fetchComplaints } from '../../services/providerAxios';
-import { complainActiveGet } from '../../services/complaint';
+
 const ComplaintList = () => {
   const [activeTab, setActiveTab] = useState('active'); // Track active tab
   const [complaints, setComplaints] = useState({ active: [], completed: [] }); // Combined state
@@ -40,9 +40,7 @@ const ComplaintList = () => {
       try {
         const data = await fetchComplaints(activeTab); // Pass activeTab to determine the URL
         const transformedData = transformComplaints(data);
-        const complainUser = await  complainActiveGet()
-        setUser(complainUser.data.user.full_name)
-       console.log(complainUser.data.user.full_name) 
+       
         setComplaints((prev) => ({
           ...prev,
           [activeTab]: transformedData,

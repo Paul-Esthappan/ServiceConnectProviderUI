@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ButtonComponent from '../reUsableComponents/ButtonComponent';
 import ModalComponent from '../../components/reUsableComponents/ModalComponent';
-import { complaintPost } from '../../services/complaint';
+import { complaintPost } from '../../services/providerAxios';
 
 const ComplaintInput = ({ isOpen, onClose, getApiCall ,values}) => {
   const [selectedFile, setSelectedFile] = useState(null);
