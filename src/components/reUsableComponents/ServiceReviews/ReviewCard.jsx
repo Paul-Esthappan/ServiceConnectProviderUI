@@ -1,7 +1,12 @@
 import React from 'react';
 import { FaHeart } from 'react-icons/fa';
+import { formatDistanceToNow } from 'date-fns';
 
-const ReviewCard = ({ name, rating, review, likes, timeAgo }) => {
+const ReviewCard = ({ name, rating, review, likes, createdAt }) => {
+
+  const timeAgo = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
+
+
   return (
     <div>
     <div className="bg-primary shadow-2xl p-4 rounded-xl flex justify-between items-center mb-4 ">

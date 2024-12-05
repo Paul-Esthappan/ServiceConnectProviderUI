@@ -11,7 +11,11 @@ const ComplaintForm = () => {
   const onClose = () =>{
     setIsOpen(prev => !prev)
   }
-
+  const values ={
+  service_request_booking_id: "BI-8826D6CF",
+  subject:"Service Issue",
+  
+  }
   const getApiCall = (type) => {
     console.log(type, "triggered")
   }
@@ -58,7 +62,7 @@ const ComplaintForm = () => {
           </div>
 
           <div className="w-full md:w-1/2">
-          <ComplaintInput isOpen={isOpen} onClose={onClose} getApiCall={getApiCall}/>
+          <ComplaintInput isOpen={isOpen} onClose={onClose} getApiCall={getApiCall} values={values}/>
         </div>
 
           </div>

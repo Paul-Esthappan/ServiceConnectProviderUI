@@ -116,3 +116,15 @@ export const reviews = async () => {
       throw error;
     }
 };
+
+
+
+export const complaintPost =async(data) =>{
+  try{
+      const response =axiosInstance.post('/complaints/',data)
+      console.log(response)
+      return response
+  }catch(error){
+      console.error(error)
+  }
+}
