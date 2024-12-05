@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import ReviewCard from '../../reUsableComponents/ServiceReviews/ReviewCard';
-import RatingComponent from './RatingComponent';
-import CustomButton from '../../reUsableComponents/ServiceReviews/CustomButton';
-import { reviews } from '../../../services/providerAxios';
+import React, { useEffect, useState } from "react";
+import ReviewCard from "../../reUsableComponents/ServiceReviews/ReviewCard";
+import RatingComponent from "./RatingComponent";
+import CustomButton from "../../reUsableComponents/ServiceReviews/CustomButton";
+import { reviews } from "../../../services/providerAxios";
 
 const ReviewSection = () => {
   const [reviewsData, setReviewsData] = useState({
@@ -10,24 +10,22 @@ const ReviewSection = () => {
     average_rating: 0,
     total_reviews: 0,
     rating_scale: "Poor",
+    message: "",
   });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        
         const response = await reviews();
         setReviewsData(response);
-        console.log(response); 
+        console.log(response);
       } catch (error) {
         console.error("Error fetching reviews:", error);
       }
     };
 
-    fetchData(); 
-  }, []); 
-
-  
+    fetchData();
+  }, []);
 
   return (
     <div className="bg-light-gray p-6 rounded-xl w-full">
@@ -38,11 +36,15 @@ const ReviewSection = () => {
           filledColor="text-yellow-500"
           emptyColor="text-yellow-500"
         />
-        <p className="text-sm text-gray-500">Based on {reviewsData.total_reviews} Review</p>
+        <p className="text-sm text-gray-500">
+          Based on {reviewsData.total_reviews} Review
+        </p>
+        {reviewsData?.message && (
+          <p className="text-sm text-gray-500">{reviewsData?.message}</p>
+        )}
       </div>
 
       <div className="flex justify-evenly mt-4 space-x-4">
-        
         <CustomButton
           textSize="text-sm"
           label={reviewsData.rating_scale}
@@ -51,12 +53,11 @@ const ReviewSection = () => {
           hoverBgColor="bg-secondary"
           hoverTextColor="text-primary"
         />
-        
       </div>
 
       <div className="mt-4 grid xs:grid-cols-1 md:grid-cols-2 gap-8 px-4 mx-auto">
         {/* Render reviews dynamically */}
-        {reviewsData.reviews.map((review, index) => (
+        {reviewsData?.reviews?.map((review, index) => (
           <ReviewCard
             key={index}
             name={review.name}
@@ -84,4 +85,3 @@ const ReviewSection = () => {
 };
 
 export default ReviewSection;
-
