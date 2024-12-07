@@ -93,7 +93,9 @@ const FinancialPage = () => {
       {/* Account Balance */}
       <div className="bg-blue-500 p-6 rounded-lg shadow-md mb-8 text-white">
         <p className="text-lg font-semibold">Account Balance</p>
-        <p className="text-2xl font-bold">${financialData?.balance || "0.00"}</p>
+        <p className="text-2xl font-bold">
+          ${financialData?.account_balance || "0.00"}
+        </p>
       </div>
 
       {/* Transactions */}

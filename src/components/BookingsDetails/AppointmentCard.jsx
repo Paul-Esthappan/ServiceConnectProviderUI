@@ -24,13 +24,21 @@ function AppointmentCard({ data }) {
       {/* Header Section */}
       <div className="flex items-center mb-6">
         <img
-          src={profile_image || 'https://via.placeholder.com/150'}
+          src={
+            profile_image
+              ? `${import.meta.env.VITE_BASE_URL}${profile_image}`
+              : "https://via.placeholder.com/150"
+          }
           alt="Service Provider"
           className="w-16 h-16 rounded-full object-cover shadow-md"
         />
         <div className="ml-4">
-          <h2 className="text-xl font-bold text-gray-800">Appointment Details</h2>
-          <p className="text-sm text-gray-500">Booking ID: {booking_id || 'N/A'}</p>
+          <h2 className="text-xl font-bold text-gray-800">
+            Appointment Details
+          </h2>
+          <p className="text-sm text-gray-500">
+            Booking ID: {booking_id || "N/A"}
+          </p>
         </div>
       </div>
 
@@ -40,7 +48,9 @@ function AppointmentCard({ data }) {
           <IoDocumentText className="text-secondary" />
           Service Description
         </h3>
-        <p className="text-sm text-gray-600 mt-2">{service_description || 'No description provided.'}</p>
+        <p className="text-sm text-gray-600 mt-2">
+          {service_description || "No description provided."}
+        </p>
       </div>
 
       {/* Availability Section */}
@@ -65,7 +75,9 @@ function AppointmentCard({ data }) {
           <IoLocationOutline className="text-secondary" />
           Customer Address
         </h3>
-        <p className="text-sm text-gray-600 mt-2">{customer_address || 'No address provided.'}</p>
+        <p className="text-sm text-gray-600 mt-2">
+          {customer_address || "No address provided."}
+        </p>
       </div>
 
       {/* Invoices Section */}

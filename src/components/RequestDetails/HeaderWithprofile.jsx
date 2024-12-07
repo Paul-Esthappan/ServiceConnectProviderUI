@@ -12,7 +12,7 @@ function HeaderWithProfile({ data }) {
       <div className="bg-light-gray w-full">
         <div className="flex items-center mb-2 space-x-4 my-6 mx-6">
           <img
-            src={data.profile_image ? `${data.profile_image}` : defaultProfileImage}
+            src={data.profile_image ? `${import.meta.env.VITE_BASE_URL}${data.profile_image}` : defaultProfileImage}
             alt="User profile"
             className="w-16 h-16 rounded-full object-cover"
           />
