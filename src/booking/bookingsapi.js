@@ -28,3 +28,24 @@ export const fetchBookings = async () => {
   }
 };
 
+export const declineSerivce = async (id, data) => {
+  try {
+    const response = await axiosInstance.post(
+      `declinerequest/`,
+      {
+        booking_id: id,
+        decline_reason: data.description,
+        images: data.file,
+      },
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+      }
+    );  
+  } catch (error) {
+    console.error(
+      "Error declineSerivce:",
+      error.response ? error.response.data : error.message
+    );
+    throw error;
+  }
+};
