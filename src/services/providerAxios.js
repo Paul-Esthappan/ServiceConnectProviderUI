@@ -2,10 +2,7 @@ import { axiosInstance } from "../../src/api/axios";
 
 export const getServiceRequests = async () => {
   try {
-    const response = await axiosInstance.get(
-      "service-requests/",
-      {}
-    );
+    const response = await axiosInstance.get("service-requests/", {});
 
     return response.data;
   } catch (error) {
@@ -17,13 +14,10 @@ export const getServiceRequests = async () => {
 export const getServiceRequestsDetails = async (id, status) => {
   try {
     console.log("Fetching invoice details for ID:", id);
-    const response = await axiosInstance.patch(
-      `service-requests/details/`,
-      {
-        booking_id: id,
-        // acceptance_status: "accept"
-      }
-    );
+    const response = await axiosInstance.patch(`service-requests/details/`, {
+      booking_id: id,
+      // acceptance_status: "accept"
+    });
 
     console.log("Service request details fetched:", response.data); // Log the response
     return response.data;
@@ -52,10 +46,7 @@ export const getInvoiceDetails = async (id) => {
 
 export const paymentTransactions = async () => {
   try {
-    const response = await axiosInstance.get(
-      "transactions/",
-      {}
-    );
+    const response = await axiosInstance.get("transactions/", {});
 
     return response.data;
   } catch (error) {
@@ -66,10 +57,7 @@ export const paymentTransactions = async () => {
 
 export const financialDetails = async () => {
   try {
-    const response = await axiosInstance.get(
-      "financial/",
-      {}
-    );
+    const response = await axiosInstance.get("financial/", {});
 
     return response.data;
   } catch (error) {
@@ -101,30 +89,26 @@ export const reviews = async () => {
   }
 };
 
+export const fetchComplaints = async (tab) => {
+  const url = tab === "active" ? "complaints/active/" : "complaints/completed/";
 
-  export const fetchComplaints = async (tab) => {
-    const url =
-      tab === 'active'
-        ? 'complaints/active/'
-        : 'complaints/completed/';
-   
-    try {
-      const response = await axiosInstance.get(url);
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching complaints:', error);
-      throw error;
-    }
+  try {
+    const response = await axiosInstance.get(url);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching complaints:", error);
+    throw error;
+  }
 };
 
-
-
-export const complaintPost =async(data) =>{
-  try{
-      const response =axiosInstance.post('/complaints/',data)
-      console.log(response)
-      return response
-  }catch(error){
-      console.error(error)
+export const complaintPost = async (data) => {
+  try {
+    const response = axiosInstance.post("/complaints/", data, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.error(error);
   }
-}
+};

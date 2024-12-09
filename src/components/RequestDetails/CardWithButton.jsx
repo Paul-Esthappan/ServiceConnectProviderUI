@@ -5,7 +5,7 @@ function CardWithButton({ data }) {
 
   // Extracting and transforming data
   const {
-    service_description = "No description provided.",
+    description:service_description = "No description provided.",
     customer_address = "No address provided.",
     availability_from,
     availability_to,

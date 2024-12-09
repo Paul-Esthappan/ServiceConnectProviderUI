@@ -51,7 +51,11 @@ const DeclineForm = () => {
       }
       case "Payment Status": {
         setIsOpen(false);
-        alert("status: "+ serviceData.invoices[0].payment_status);
+        alert(
+          "status: " + serviceData?.invoices
+            ? serviceData?.invoices[0]?.payment_status || "Unavaliable"
+            : "Unavaliable"
+        );
         break;
       }
       case "decline": {

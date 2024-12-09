@@ -7,7 +7,7 @@ const BookingDetails = ({ bookingDetails }) => {
     invoices,
   } = bookingDetails;
   const appoinment =
-    bookingDetails?.invoices[0].appointment_date ||
+    bookingDetails?.invoices[0]?.appointment_date ||
     bookingDetails.availability_from; //Just form backup
 
     const getGrantTotal = () => {
