@@ -19,7 +19,7 @@ function HeaderWithProfile({ data }) {
           <div className="flex flex-col">
             <div className="flex items-center text-secondary font-medium">
               <MdLocationPin className="text-xl mr-1" />
-              <p>{data.customer_place || "Location not provided"}</p>
+              <p>{data.location || "Location not provided"}</p>
             </div>
           </div>
         </div>

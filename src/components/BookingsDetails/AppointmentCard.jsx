@@ -1,5 +1,9 @@
-import React from 'react';
-import { IoDocumentText, IoLocationOutline, IoCalendarOutline } from 'react-icons/io5';
+import React from "react";
+import {
+  IoDocumentText,
+  IoLocationOutline,
+  IoCalendarOutline,
+} from "react-icons/io5";
 
 function AppointmentCard({ data }) {
   const {
@@ -10,12 +14,14 @@ function AppointmentCard({ data }) {
     availability_to,
     profile_image,
     invoices,
-  } = data || {};
+  } = data;
+
+  console.log(invoices, "invoices");
 
   // Convert date/time to a readable format
   const formatDate = (datetime) => {
-    if (!datetime) return 'N/A';
-    const options = { dateStyle: 'medium', timeStyle: 'short' };
+    if (!datetime) return "N/A";
+    const options = { dateStyle: "medium", timeStyle: "short" };
     return new Date(datetime).toLocaleString(undefined, options);
   };
 
@@ -86,15 +92,36 @@ function AppointmentCard({ data }) {
           <IoDocumentText />
           Invoices
         </h3>
-        {invoices && invoices.length > 0 ? (
-          <ul className="mt-2 text-sm text-gray-600 list-disc list-inside">
-            {invoices.map((invoice, index) => (
-              <li key={index}>{invoice}</li>
-            ))}
-          </ul>
-        ) : (
-          <p className="mt-2 text-sm text-gray-600">No invoices available.</p>
-        )}
+        <table className="mt-2 text-sm">
+          <thead>
+            <tr>
+              <th>Sl.no</th>
+              <th>Desciption</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Total</th>
+              <th>status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {invoices && invoices.length > 0 ? (
+              invoices.map((invoice, index) => (
+                <tr key={index} className="mt-2 text-sm text-gray-600">
+                  <td className="p-2">{invoice.invoice_number}</td>
+                  <td className="p-2">{invoice.description || "---"}</td>
+                  <td className="p-2">{invoice.quantity}</td>
+                  <td className="p-2">{invoice.price}</td>
+                  <td className="p-2">{invoice.total_amount}</td>
+                  <td className="p-2">{invoice.payment_status}</td>
+                </tr>
+              ))
+            ) : (
+              <tr className="mt-2 text-sm text-gray-600 text-center">
+                <td colSpan={6}>No invoices available.</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );

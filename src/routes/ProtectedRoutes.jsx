@@ -67,7 +67,7 @@ export const ProtectedRoutes = [     // Services routes
         },
         {
           path: 'booking-detail/:id',
-          element: <BookingDetails />,
+          element: <BookingDetails />,//need update(done)
         },
         {
           path: 'payment-methods',
@@ -75,15 +75,15 @@ export const ProtectedRoutes = [     // Services routes
         },
         {
           path: 'register-complaint/:id',
-          element: <ComplaintFormPage />,
+          element: <ComplaintFormPage />, //need update
         },
         {
           path: 'lead-details/:id',
-          element: <LeadDetailPage />,
+          element: <LeadDetailPage />, //need update
         },
         {
           path: 'decline-form/:id',
-          element: <DeclinePage />,
+          element: <DeclinePage />, //need update
         },
         {
           path: 'invoice/:id',

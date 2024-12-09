@@ -27,10 +27,10 @@ function BookingsDetailsButtons({ id }) {
         await completeBooking(id); // Call the completeBooking function
         navigate("/bookings");
       } catch (error) {
-        console.error("Failed to complete booking");
+        alert("Failed to complete booking");
       }
     } else if (action === "decline") {
-      navigate(`/${action}-form/${id}`); // Corrected template literal
+      navigate(`/decline-form/${id}`); // Corrected template literal
     }
     setShowModal(false);
   };

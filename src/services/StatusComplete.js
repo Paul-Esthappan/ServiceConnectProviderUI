@@ -6,8 +6,7 @@ export async function completeBooking(id) {
 
     const response = await axiosInstance.post(
       "/change-work-status/",
-      { id }, // Body with booking ID
-      
+      { id, work_status: "completed" } // Body with booking ID
     );
 
     console.log("Work status updated:", response.data);

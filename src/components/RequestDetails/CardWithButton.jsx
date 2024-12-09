@@ -9,7 +9,7 @@ function CardWithButton({ data }) {
     customer_address = "No address provided.",
     availability_from,
     availability_to,
-    customer_place = "N/A",
+    location = "N/A",
     booking_id = "N/A",
     image,
   } = data || {};
@@ -57,7 +57,9 @@ function CardWithButton({ data }) {
               <h3 className="text-lg font-semibold">Booking ID</h3>
               <p className="text-gray-700">{booking_id}</p>
 
-              <h3 className="mt-4 text-lg font-semibold">Service Description</h3>
+              <h3 className="mt-4 text-lg font-semibold">
+                Service Description
+              </h3>
               <p className="text-gray-700">{service_description}</p>
 
               <h3 className="mt-4 text-lg font-semibold">Availability</h3>
@@ -78,7 +80,7 @@ function CardWithButton({ data }) {
           ) : (
             <div>
               <h3 className="text-lg font-semibold">Location</h3>
-              <p className="text-black">{customer_place}</p>
+              <p className="text-black">{location}</p>
 
               <h3 className="mt-4 text-lg font-semibold">Customer Address</h3>
               <p>{customer_address}</p>
