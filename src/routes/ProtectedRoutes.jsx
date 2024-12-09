@@ -79,7 +79,7 @@ export const ProtectedRoutes = [     // Services routes
         },
         {
           path: 'lead-details/:id',
-          element: <LeadDetailPage />, //need update
+          element: <LeadDetailPage />, //need update(done)
         },
         {
           path: 'decline-form/:id',
