@@ -3,11 +3,11 @@
 import { axiosInstance } from "../api/axios";
 
 export const deductLead = async (bookingId) => {
-    const DEDUCTLEAD_URL = "/service-provider/deductlead/";
+    const DEDUCTLEAD_URL = "/deductlead/";
     console.log(bookingId);
     try {
-        const payload = { booking_id: "BI-8826D6CF" };
-        //const payload = { booking_id: bookingId };
+        //const payload = { booking_id: "BI-8826D6CF" };
+        const payload = { booking_id: bookingId };
         
         // Send PATCH request with the payload in the body
         const response = await axiosInstance.patch(DEDUCTLEAD_URL, payload);

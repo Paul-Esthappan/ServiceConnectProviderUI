@@ -75,7 +75,7 @@ export const ProtectedRoutes = [     // Services routes
         },
         {
           path: 'register-complaint/:id',
-          element: <ComplaintFormPage />, //need update
+          element: <ComplaintFormPage />, //need update(done)
         },
         {
           path: 'lead-details/:id',
