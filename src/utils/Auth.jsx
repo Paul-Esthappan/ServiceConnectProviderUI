@@ -4,10 +4,11 @@ import { Route, Navigate } from 'react-router-dom';
 // import { useAuth } from '../hooks/useAuth'; // Your authentication hook
 
 const ProtectedRoute = ({ children }) => {
-  const { isLoggedIn} = useSelector((state) => state.auth);
+  const { isLoggedIn, accessToken } = useSelector((state) => state.auth);
 
-  if (!isLoggedIn) {
-    return <Navigate to="/sign-in" replace />;
+  // Check if the user is authenticated
+  if (!isLoggedIn || !accessToken) {
+    return <Navigate to="/sign-in" />;
   }
 
   // If the user is authenticated, allow them to access the route

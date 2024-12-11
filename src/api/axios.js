@@ -55,62 +55,33 @@ axiosInstance.interceptors.request.use(
 /*
  * 2. RESPONSE INTERCEPTOR
  */
-function attachResponseInterceptor() {
-  
-  const responseInterceptor = axiosInstance.interceptors.response.use(
-    (response) => {
-      return response; 
-    },
-    async (error) => {
-      const config = error?.config;
-      const responseError = error?.response;
-      console.log(responseError?.status, responseError?.headers);
-      
-      if (
-        responseError?.status === 401 
-    ) {
-      const isAccessTokenError = responseError?.data?.messages?.some(
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+    console.log("originalRequest: ", originalRequest);
+
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      const isAccessTokenError = error.response?.data?.messages?.some(
         (msg) => msg.token_class === "AccessToken"
       );
-
+      console.log("AccessTokenError");
       if (isAccessTokenError) {
-        axiosInstance.interceptors.response.eject(responseInterceptor);
-        console.log('401');
-        store?.dispatch(clearAccessToken());
-
-        
+        originalRequest._retry = true;
+        store.dispatch(clearAccessToken());
         try {
-          const MAX_RETRIES = 2;
-          console.log(MAX_RETRIES);
-          
-          config._retries = Math.abs(config._retries) || 0;
-          if (config._retries >= MAX_RETRIES) {
-            throw new Error(`Max retries (${config._retries}) reached!`);
+          const response = await refreshAccessToken();
+          if (response.access) {
+            store.dispatch(setAccessToken(response.access));
+            originalRequest.headers.Authorization = `Bearer ${response.access}`; 
+            return axiosInstance(originalRequest);
           }
-
-          const data = await refreshAccessToken();
-          
-          const accessToken = data.access
-          config.headers.Authorization = `Bearer ${data.access}`;
-          store.dispatch(setAccessToken(accessToken));
-
-          config._retries++;
-          attachResponseInterceptor();
-          return axiosInstance(config);
-        } catch (reauthError) {
-          console.log("Re-authentication error: ", reauthError);
-        } finally {
-          attachResponseInterceptor(); 
+        } catch (err) {
+          return Promise.reject(err);
         }
       }
-      store?.dispatch(clearAccessToken());
-      }
-      console.log(error);
-      
-      //  logError(error, store); 
-      return Promise.reject(error);
     }
-  );
-}
 
-attachResponseInterceptor();
+    return Promise.reject(error);
+  }
+);
