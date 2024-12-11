@@ -4,15 +4,15 @@ import { useSelector } from "react-redux";
 import SignInProvider from "../../../components/serviceProvider/SignInComponents/SignInProvider";
 
 const ServiceProviderSignIn = () => {
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { isLoggedIn, accessToken } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && accessToken) {
       // Navigate to the previous page if logged in
       navigate(-1);
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn, accessToken, navigate]);
 
   return (
     <div>
